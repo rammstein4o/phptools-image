@@ -17,10 +17,10 @@ all: build tag-latest
 
 build:
 	-docker pull $(NS)/$(IMAGE_NAME):$(VERSION)
-	docker build -t $(NS)/$(IMAGE_NAME):$(VERSION) --build-arg VERSION=$(VERSION) --build-arg PHP_METRICS_VERSION=$(PHP_METRICS_VERSION) --build-arg PHP_CODEFIXER_VERSION=$(PHP_CODEFIXER_VERSION) --build-arg AST_VERSION=$(AST_VERSION) --build-arg PHAN_VERSION=$(PHAN_VERSION) --build-arg CHURN_VERSION=$(CHURN_VERSION) --build-arg PHPSTAN_VERSION=$(PHPSTAN_VERSION) --no-cache .
+	docker build -t $(NS)/$(IMAGE_NAME):$(VERSION) --build-arg VERSION=$(VERSION) --build-arg PHP_METRICS_VERSION=$(PHP_METRICS_VERSION) --build-arg PHP_CODEFIXER_VERSION=$(PHP_CODEFIXER_VERSION) --build-arg AST_VERSION=$(AST_VERSION) --build-arg PHAN_VERSION=$(PHAN_VERSION) --build-arg CHURN_VERSION=$(CHURN_VERSION) --build-arg PHPSTAN_VERSION=$(PHPSTAN_VERSION) .
 
 no-cache:
-	docker build --no-cache -t $(NS)/$(IMAGE_NAME):$(VERSION) --build-arg VERSION=$(VERSION) --build-arg PHP_METRICS_VERSION=$(PHP_METRICS_VERSION) --build-arg PHP_CODEFIXER_VERSION=$(PHP_CODEFIXER_VERSION) --build-arg AST_VERSION=$(AST_VERSION) --build-arg PHAN_VERSION=$(PHAN_VERSION) --build-arg CHURN_VERSION=$(CHURN_VERSION) --build-arg PHPSTAN_VERSION=$(PHPSTAN_VERSION) --no-cache .
+	docker build --no-cache -t $(NS)/$(IMAGE_NAME):$(VERSION) --build-arg VERSION=$(VERSION) --build-arg PHP_METRICS_VERSION=$(PHP_METRICS_VERSION) --build-arg PHP_CODEFIXER_VERSION=$(PHP_CODEFIXER_VERSION) --build-arg AST_VERSION=$(AST_VERSION) --build-arg PHAN_VERSION=$(PHAN_VERSION) --build-arg CHURN_VERSION=$(CHURN_VERSION) --build-arg PHPSTAN_VERSION=$(PHPSTAN_VERSION) .
 
 pull:
 	docker pull $(NS)/$(IMAGE_NAME):$(VERSION)

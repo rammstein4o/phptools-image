@@ -65,6 +65,6 @@ RUN composer global require bmitch/churn-php ${CHURN_VERSION} \
     && composer global require phpstan/phpstan ${PHPSTAN_VERSION} \
     && composer global require phpstan/phpstan-mockery
 
-ENV PATH="~/.composer/vendor/bin:${PATH}"
+ENV PATH="/home/${USERNAME}/.composer/vendor/bin:${PATH}"
 
 CMD ["bash"]
