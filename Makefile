@@ -29,8 +29,11 @@ pull:
 push:
 	docker push $(NS)/$(IMAGE_NAME):$(VERSION)
 
+tag:
+	docker tag $(NS)/$(IMAGE_NAME):$(VERSION) $(NS)/$(IMAGE_NAME):$(TAG_VERSION)
+
 tag-latest:
-	docker tag $(NS)/$(IMAGE_NAME):$(VERSION) $(NS)/$(IMAGE_NAME):latest
+	make tag -e VERSION=$(VERSION) -e TAG_VERSION=latest
 
 shell:
 	-docker pull $(NS)/$(IMAGE_NAME):$(VERSION)
