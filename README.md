@@ -76,3 +76,31 @@ docker run --rm -u 1000 -v ${PWD}/:/project rammstein4o/phptools-image:0.2.0 chu
 ```bash
 docker run --rm -u 1000 -v ${PWD}/:/project rammstein4o/phptools-image:0.2.0 phpstan analyse ./src --level=7
 ```
+
+### Rector
+[GitHub](https://github.com/rectorphp/rector)
+
+```bash
+docker run --rm -u 1000 -v ${PWD}/:/project rammstein4o/phptools-image:0.2.0 rector process ./src --autoload-file ./vendor/autoload.php
+```
+
+### PHP Magic Number Detector
+[GitHub](https://github.com/povils/phpmnd)
+
+```bash
+docker run --rm -u 1000 -v ${PWD}/:/project rammstein4o/phptools-image:0.2.0 phpmnd ./src --ignore-funcs=round,sleep
+```
+
+### PHP VarDump Check
+[GitHub](https://github.com/JakubOnderka/PHP-Var-Dump-Check)
+
+```bash
+docker run --rm -u 1000 -v ${PWD}/:/project rammstein4o/phptools-image:0.2.0 var-dump-check --no-colors --tracy ./src
+```
+
+### Deptrac
+[GitHub](https://github.com/sensiolabs-de/deptrac)
+
+```bash
+docker run --rm -u 1000 -v ${PWD}/:/project rammstein4o/phptools-image:0.2.0 deptrac analyze depfile.yml
+```

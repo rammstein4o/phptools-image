@@ -1,6 +1,6 @@
 FROM rammstein4o/php-image:7.3
 
-ARG VERSION=0.2.0
+ARG VERSION=0.2.1
 
 LABEL maintainer="rado.salov@gmail.com" \
     version="${VERSION}" \
@@ -15,6 +15,7 @@ ARG PHAN_VERSION
 ARG CHURN_VERSION
 ARG PHPSTAN_VERSION
 ARG PHPMD_VERSION
+ARG DEPTRAC_VERSION
 
 USER root
 
@@ -22,6 +23,7 @@ RUN apt-get update && apt-get install --allow-unauthenticated -y \
         unzip \
         curl \
         git \
+        graphviz \
         php7.3-dev \
     && git clone -b v${AST_VERSION} --single-branch --depth 1 https://github.com/nikic/php-ast.git /php-ast \
     && cd /php-ast \
@@ -54,6 +56,8 @@ RUN apt-get update && apt-get install --allow-unauthenticated -y \
     && chmod +x /usr/local/bin/phploc \
     && curl -L https://github.com/phan/phan/releases/download/${PHAN_VERSION}/phan.phar > /usr/local/bin/phan \
     && chmod +x /usr/local/bin/phan \
+    && curl -L https://github.com/sensiolabs-de/deptrac/releases/download/${DEPTRAC_VERSION}/deptrac.phar > /usr/local/bin/deptrac \
+    && chmod +x /usr/local/bin/deptrac \
     && apt-get remove -y curl php7.3-dev \
     && rm -rf /var/lib/apt/lists/*
 
@@ -64,7 +68,10 @@ USER ${USERNAME}
 
 RUN composer global require bmitch/churn-php ${CHURN_VERSION} \
     && composer global require phpstan/phpstan ${PHPSTAN_VERSION} \
-    && composer global require phpstan/phpstan-mockery
+    && composer global require phpstan/phpstan-mockery \
+    && composer global require rector/rector \
+    && composer global require povils/phpmnd \
+    && composer global require jakub-onderka/php-var-dump-check
 
 ENV PATH="/home/${USERNAME}/.composer/vendor/bin:${PATH}"
 
